@@ -1,0 +1,28 @@
+.customFormLogin{
+    background-color: rgb(207, 207, 207);
+    padding: 150px;
+    .customBox{
+        box-shadow: 0px 0px 20px black;
+        border-radius: 20px;
+        padding: 60px;
+        .leftBox{
+            text-align: center;
+        }
+        .rightBox{
+            a{
+                text-decoration: none;
+                color: red;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    .customFormLogin{
+        padding: 50px;
+        .customBox{
+            padding: 30px;
+        }
+    }
+}

@@ -1,0 +1,145 @@
+{
+    "allProduct":[
+        {
+            "id": "1",
+            "image": "/image/product/jordan1.jpg",
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High OG Yellow Toe",
+            "price": "5518"
+        },
+        {
+            "id": "2",
+            "image": "/image/product/jordan2.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High Off-White University Blue (UNC)",
+            "price": "35000"
+        },
+        {
+            "id": "3",
+            "image": "/image/product/jordan3.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High OG Varsity Red ",
+            "price": "6600"
+        },
+        {
+            "id": "4",
+            "image": "/image/product/jordan4.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Mid White Black",
+            "price": "6600"
+        },
+        {
+            "id": "5",
+            "image": "/image/product/jordan5.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High OG White Cement",
+            "price": "6600"
+        },
+        {
+            "id": "6",
+            "image": "/image/product/jordan6.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High OG Lucky Green (GS)",
+            "price": "3000"
+        },
+        {
+            "id": "7",
+            "image": "/image/product/jordan7.jpg",           
+            
+            "brand":"Nike",
+            "name": "Jordan 1 High OG Visionaire",
+            "price": "6600"
+        },
+        {
+            "id": "8",
+            "image": "/image/product/jordan8.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 High OG Visionaire",
+            "price": "6600"
+        },
+        {
+            "id": "9",
+            "image": "/image/product/jordan9.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Mid SE White Ice Blue",
+            "price": "4200"
+        },
+        {
+            "id": "10",
+            "image": "/image/product/jordan10.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High Satin Black Toe",
+            "price": "6600"
+        },
+        {
+            "id": "11",
+            "image": "/image/product/jordan11.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High OG Lost and Found",
+            "price": "8740"
+        },
+        {
+            "id": "12",
+            "image": "/image/product/jordan12.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High Off-White Chicago",
+            "price": "99000"
+        },
+        {
+            "id": "13",
+            "image": "/image/product/jordan13.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro AJKO Chicago (2021)",
+            "price": "5540"
+        },
+        {
+            "id": "14",
+            "image": "/image/product/jordan14.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Mid Lakers (2022)",
+            "price": "2499"
+        },
+        {
+            "id": "15",
+            "image": "/image/product/jordan15.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Low Golf Court Purple",
+            "price": "4740"
+        },
+        {
+            "id": "16",
+            "image": "/image/product/jordan16.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Mid Light Smoke Grey Anthracite",
+            "price": "4200"
+        },
+        {
+            "id": "17",
+            "image": "/image/product/jordan17.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Low Fragment x Travis Scott",
+            "price": "44000"
+        },
+        {
+            "id": "18",
+            "image": "/image/product/jordan18.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro Low Dior",
+            "price": "229998"
+        },
+        {
+            "id": "19",
+            "image": "/image/product/jordan19.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High OG Bloodline",
+            "price": "7300"
+        },
+        {
+            "id": "20",
+            "image": "/image/product/jordan20.jpg",            
+            "brand":"Nike",
+            "name": "Jordan 1 Retro High OG University Blue",
+            "price": "9040"
+        }
+    ]
+}
