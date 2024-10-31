@@ -71,12 +71,13 @@ function Form_Login() {
     }
 
   return (
+    <>
     <div className="customFormLogin">
       <Container>
         <Row className='customBox'>
         <Col xs={12} md={6} className="leftBox">
             <div className="Admin">
-                <p>Username : administrator</p>
+                <p>Username : admin.oil</p>
                 <p>Password : 123456</p>
                 <p>ใช้สำหรับ Login เข้า Role : Admin</p>
             </div>
@@ -111,6 +112,7 @@ function Form_Login() {
         </Row>
       </Container>
     </div>
+    </>
   )
 }
 

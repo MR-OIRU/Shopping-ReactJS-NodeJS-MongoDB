@@ -5,6 +5,8 @@
         box-shadow: 0px 0px 20px black;
         border-radius: 20px;
         padding: 60px;
+        width: 800px;
+        margin: auto;
         .leftBox{
             text-align: center;
         }
@@ -15,7 +17,6 @@
             }
         }
     }
-
 }
 
 @media screen and (max-width: 1200px) {
@@ -23,6 +24,16 @@
         padding: 50px;
         .customBox{
             padding: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .customFormLogin{
+        padding: 50px;
+        .customBox{
+            padding: 30px;
+            width: auto;
         }
     }
 }

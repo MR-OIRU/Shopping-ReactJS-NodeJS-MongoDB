@@ -14,6 +14,7 @@ let memberSchema = mongoose.Schema({
     Email: { type: String, required: true, unique: true },
     FirstName: { type: String, required: true },
     LastName: { type: String, required: true },
+    Sex: { type: String, required: true },
     Phone: { type: String },
     Password: { type: String, required: true },
     Date: { type: Date, default: Date.now },
@@ -21,20 +22,21 @@ let memberSchema = mongoose.Schema({
 })
 
 let brandSchema = mongoose.Schema({
-    brandID: { type: String, required: true },
-    brandName: { type: String, required: true },
+    BrandID: { type: String, required: true },
+    BrandName: { type: String, required: true },
     Date: { type: Date, default: Date.now }
 })
 
 let productSchema = mongoose.Schema({
-    productID: { type: String, required: true },
-    productBrand: { type: String, required: true },
-    productName: { type: String, required: true },
-    productQuantity: { type: String, required: true },
-    productImage: { type: String, required: true },
-    costPrice: { type: String, required: true },
-    sellPrice: { type: String},
-    productDate: { type: Date, default: Date.now },
+    ProductID: { type: String, required: true },
+    ProductBrand: { type: String, required: true },
+    ProductName: { type: String, required: true },
+    ProductQuantity: { type: String, required: true },
+    ProductImage: { type: String, required: true },
+    CostPrice: { type: String, required: true },
+    SellPrice: { type: String},
+    ProductSold: { type: String, default: "0" },
+    ProductDate: { type: Date, default: Date.now },
 })
 
 let orderProductSchema = mongoose.Schema({

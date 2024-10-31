@@ -15,9 +15,10 @@ const server = express()
 // use
 server.use(morgan('dev'))
 server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 server.use(cookieParser()) 
 server.use(session({
-    secret: 'mySession',
+    secret: process.env.API_SESSION,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }

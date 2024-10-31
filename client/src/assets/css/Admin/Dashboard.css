@@ -1,0 +1,116 @@
+.customDashboard{
+    background-color: #cccccc;
+    flex: 1;
+    .customDataMember{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        .HeadMember,.HeadAdmin,.HeadUser{
+            box-shadow: 0px 0px 10px rgb(121, 121, 121);
+            width: 340px;
+            background-color: white;
+            border-radius: 5px;
+            color: black;
+            h5{
+                text-align: center;
+                padding: 10px;
+            }
+        }
+        .Member{
+            box-shadow: 0px 0px 10px rgb(121, 121, 121);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            width: 340px;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+        }
+        .Admin,.User{
+            box-shadow: 0px 0px 10px rgb(121, 121, 121);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            width: 340px;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+@media screen and (max-width:1400px) {
+    .customDashboard{
+        .customMember{
+            .HeadMember,.HeadAdmin,.HeadUser{
+                width: 230px;
+            }
+            .Member{
+                width: 230px;
+            }
+            .Admin,.User{
+                width: 230px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:992px) {
+    .customDashboard{
+        .customMember{
+            .HeadMember,.HeadAdmin,.HeadUser{
+                width: 230px;
+            }
+            .Member{
+                width: 230px;
+            }
+            .Admin,.User{
+                width: 230px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .customDashboard{
+        .customMember{
+            .HeadMember,.HeadAdmin,.HeadUser{
+                width: 170px;
+            }
+            .Member{
+                width: 170px;
+            }
+            .Admin,.User{
+                width: 170px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:576px) {
+    .customDashboard{
+        .customMember{
+            padding-top: 0px;
+            .customCol{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-top: 40px;
+            }
+            .HeadMember,.HeadAdmin,.HeadUser{
+                width: 300px;
+            }
+            .Member{
+                width: 300px;
+            }
+            .Admin,.User{
+                width: 300px;
+            }
+        }
+    }
+}

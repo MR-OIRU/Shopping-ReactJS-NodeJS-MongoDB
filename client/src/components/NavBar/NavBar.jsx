@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Navbar, Nav, Button, Dropdown } from 'react-bootstrap';
-import { BsPersonCircle } from "react-icons/bs";
+import { BsPersonCircle,BsCart,BsHeart } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -15,6 +15,7 @@ function NavBar() {
   axios.defaults.withCredentials = true
 
   const [login,setLogin] = useState({})
+
   useEffect(()=>{
     axios.get(`${url}navbar`).then((res) => {
       setLogin(res.data.user)
@@ -22,6 +23,22 @@ function NavBar() {
         console.error("Error fetching data:", error);
     });
   },[])
+
+  const handleLogout = async () =>{
+    axios.post(`${url}logout`).then((res)=>{
+      if (res.status === 200) {
+        withReactContent(Swal).fire({
+          icon: "success",
+          title: "Successfully",
+          text:"Logout successfully!!.",
+          timer: 1500,
+          showConfirmButton: false
+        }).then(()=>{
+          window.location.href = '/'
+        })
+      }
+    }).catch((err) => console.log(err))
+} 
   return (
     <div className="custom-navbar fixed-top">
       <Container>
@@ -48,9 +65,11 @@ function NavBar() {
           <Col xs={8} sm={6} md={5} lg={3} xl={3} className={login && login.Role === 'User' && login.Login === true ? "UserLogin" : "UserBox"}>
             <div className="cart_Bx">
                 <span className="cart_Num">0</span>
+                <BsCart />
             </div>
             <div className="wishlist_Bx">
                 <span className="wishlist_Num">0</span>
+                <BsHeart />
             </div>
             <div className="user_Bx">
               <Dropdown>
@@ -59,7 +78,8 @@ function NavBar() {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item >Profile</Dropdown.Item>
-                  <Dropdown.Item >Logout</Dropdown.Item>
+                  <Dropdown.Item >Order</Dropdown.Item>
+                  <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -71,8 +91,12 @@ function NavBar() {
                 <BsPersonCircle />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item >Dashboard</Dropdown.Item>
-                  <Dropdown.Item >Logout</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/admin')}>Dashboard</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/admin/member')}>Member</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/admin/brand')}>Brand</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/admin/product')}>Product</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/admin/order')}>Order</Dropdown.Item>
+                  <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
