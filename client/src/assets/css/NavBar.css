@@ -16,6 +16,8 @@
     .logo {
         color: white;
         font-size: 30px;
+
+        cursor: pointer;
         img {
             width: 100px;
             height: 100px;
@@ -88,6 +90,7 @@
     .wishlist_Bx{
         cursor: pointer;
         padding: 20px;
+        margin-right: 10px;
         font-size: 1.5rem;
         color:#ffc107;
         .wishlist_Num{
@@ -189,8 +192,8 @@
     }
     .UserLogin{
         position: fixed; 
-        top: 12px;
-        right:60px;
+        top: 15px;
+        right:50px;
     }
     .AdminLogin{
         position: fixed; 

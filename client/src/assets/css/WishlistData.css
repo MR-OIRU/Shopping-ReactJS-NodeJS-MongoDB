@@ -1,0 +1,43 @@
+.customIcon{
+    color: #ffc107;
+    background-color: black;
+    border: none;
+    font-size: 1.5rem;
+}
+.offcanvas-body{
+    .wishlistDetail{
+        padding: 10px;
+        overflow: scroll;
+        max-height: 420px;
+        scrollbar-width: thin;
+        .wishlistProduct{
+            display: flex;
+            align-items: center;
+            .product_img{
+                img{
+                    width: 120px;
+                    height: 100px;
+                }
+            }
+        }
+        .productPrice{
+            display: flex;
+            margin: 20px;
+            .brand{
+                background: #ffc107;
+                padding: .3rem 1rem;
+                border-radius: 10px;
+            }
+
+            .price,.quantity{
+                padding: .3rem 1rem;
+                border-radius: 10px;
+            }
+        }
+        span{
+            display: flex;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+    }
+}

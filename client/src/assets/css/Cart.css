@@ -1,0 +1,62 @@
+.customData{
+    padding: 100px 0px 100px 0px;
+        thead{
+            th{
+                text-align: center;
+                background-color: black;
+                color: white;
+            }
+            .Quantity{
+                width: 150px;
+            }
+        }
+        tbody{
+            
+            td{
+                text-align: center;
+                vertical-align: middle;
+                img{
+                    width: 110px;
+                    height: 90px;
+                }
+                span{
+                    padding: 30px;
+                }
+            }
+        }
+
+        .customDetail{
+            h3{
+                padding-top:30px;
+                text-align: center;
+            }
+            ul{
+                padding-top:50px;
+                li{
+                    font-size: 1.1rem;
+                    list-style: none;
+                    display: flex;
+                    justify-content: space-between;
+                    .PriceTotal,.Coupon,.tax,.total{
+                        padding-right: 20px;
+                    }
+                }
+            } 
+            .customBtn{
+                padding-top:10px;
+                display: flex;
+                justify-content: center;
+            }
+
+        }
+        @media screen and (max-width: 991px) {
+            thead{
+                .Quantity{
+                    width: 150px;
+                }
+                .Name{
+                    width: 300px;
+                }
+            }
+        }
+}

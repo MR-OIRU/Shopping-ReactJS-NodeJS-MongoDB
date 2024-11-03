@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Navbar, Nav, Button, Dropdown } from 'react-bootstrap';
 import { BsPersonCircle,BsCart,BsHeart } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
+import { useQuantityInCart,useQuantityInWishlist,useCartUser } from '../CartContext';
+
+import Cart from './cartData/CartData';
+import Wishlist from './cartData/WishlistData';
 import axios from 'axios';
 
 import Swal from 'sweetalert2'
@@ -12,18 +16,45 @@ import '../../assets/css/Navbar.css';
 function NavBar() {
   const url = import.meta.env.VITE_API_URL
   const navigate = useNavigate();
+  const { CartUser, setCartUser } = useCartUser();
+  //cart
+  const { QuantityInCart, setQuantityInCart } = useQuantityInCart();
+  //wishlist
+  const { QuantityInWishlist, setQuantityInWishlist } = useQuantityInWishlist();
   axios.defaults.withCredentials = true
 
-  const [login,setLogin] = useState({})
+  const [User,setUser] = useState({})
 
   useEffect(()=>{
     axios.get(`${url}navbar`).then((res) => {
-      setLogin(res.data.user)
+      setUser(res.data.user.user)
     }).catch((error) => {
         console.error("Error fetching data:", error);
     });
   },[])
 
+  useEffect(()=>{
+    if(User && User.Role === 'User'){
+        const user = User.Cart;
+        const Token = `cart_${user}`;
+        const Cart = {
+          cart: [],
+          wishlist: [],
+          TotalQuantityInCart: 0,
+          TotalPriceInCart: 0,
+          TotalQuantityInWishlist: 0
+        }
+        const UserCart = JSON.parse(localStorage.getItem(Token)) || null
+        if (!UserCart) {
+          localStorage.setItem(Token, JSON.stringify(Cart));
+        }else{
+          setCartUser(User.Cart);
+          setQuantityInCart(UserCart.TotalQuantityInCart)
+          setQuantityInWishlist(UserCart.TotalQuantityInWishlist)
+        }
+    }
+  },[User,QuantityInCart,QuantityInWishlist])
+  
   const handleLogout = async () =>{
     axios.post(`${url}logout`).then((res)=>{
       if (res.status === 200) {
@@ -38,7 +69,7 @@ function NavBar() {
         })
       }
     }).catch((err) => console.log(err))
-} 
+  } 
   return (
     <div className="custom-navbar fixed-top">
       <Container>
@@ -59,17 +90,17 @@ function NavBar() {
               </Navbar.Collapse>
             </Navbar>
           </Col>
-          <Col xs={5} sm={4} md={3} lg={3} xl={2} className={login && login.Login === true ? "LoginTrue" : "LoginBox"}>
+          <Col xs={5} sm={4} md={3} lg={3} xl={2} className={User && User.Login === true ? "LoginTrue" : "LoginBox"}>
             <Button variant="warning" href="/login">Login</Button>
           </Col>
-          <Col xs={8} sm={6} md={5} lg={3} xl={3} className={login && login.Role === 'User' && login.Login === true ? "UserLogin" : "UserBox"}>
+          <Col xs={8} sm={6} md={5} lg={3} xl={3} className={User && User.Role === 'User' && User.Login === true ? "UserLogin" : "UserBox"}>
             <div className="cart_Bx">
-                <span className="cart_Num">0</span>
-                <BsCart />
+                <span className="cart_Num">{QuantityInCart}</span>
+                <Cart />
             </div>
             <div className="wishlist_Bx">
-                <span className="wishlist_Num">0</span>
-                <BsHeart />
+                <span className="wishlist_Num">{QuantityInWishlist}</span>
+                <Wishlist />
             </div>
             <div className="user_Bx">
               <Dropdown>
@@ -84,7 +115,7 @@ function NavBar() {
               </Dropdown>
             </div>
           </Col>
-          <Col xs={3} sm={4} md={3} lg={3} xl={3} className={login && login.Role === 'Admin' && login.Login === true ? "AdminLogin" : "AdminBox"}>
+          <Col xs={3} sm={4} md={3} lg={3} xl={3} className={User && User.Role === 'Admin' && login.Login === true ? "AdminLogin" : "AdminBox"}>
             <div className="admin_Bx">
               <Dropdown>
                 <Dropdown.Toggle variant="warning">

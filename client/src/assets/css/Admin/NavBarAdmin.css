@@ -43,50 +43,50 @@
             }
         }
     }
-}
-.offcanvas{
-    .offcanvas-header{
-        background-color: black;
-        color: white;
-        .offcanvas-title{
-            display: flex;
-            align-items: center;
-            img{
-                width: 100px;
-                border-radius: 100px;
-            }
-            p{
-                margin-top: 10px;
-                margin-left: 30px;
+    .offcanvas{
+        .offcanvas-header{
+            background-color: black;
+            color: white;
+            .offcanvas-title{
+                display: flex;
+                align-items: center;
+                img{
+                    width: 100px;
+                    border-radius: 100px;
+                }
+                p{
+                    margin-top: 10px;
+                    margin-left: 30px;
+                }
             }
         }
-    }
-    .offcanvas-body{
-        color: white;
-        background-color: black;
-        .customManageAdmin{
-            h5{
-                color: white;
+        .offcanvas-body{
+            color: white;
+            background-color: black;
+            .customManageAdmin{
+                h5{
+                    color: white;
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+                .nav-link{
+                    margin: 10px;
+                    color: white;
+                    border-radius: 10px;
+                }
+                .nav-link:hover{
+                    background-color: #2b2b2b;
+                }
+            }
+            .customLogout{
                 text-align: center;
-                margin-bottom: 30px;
-            }
-            .nav-link{
-                margin: 10px;
-                color: white;
-                border-radius: 10px;
-            }
-            .nav-link:hover{
-                background-color: #2b2b2b;
-            }
-        }
-        .customLogout{
-            text-align: center;
-            .nav-link{
-                color: white;
-                border-radius: 10px;
-            }
-            .nav-link:hover{
-                background-color: #2b2b2b;
+                .nav-link{
+                    color: white;
+                    border-radius: 10px;
+                }
+                .nav-link:hover{
+                    background-color: #2b2b2b;
+                }
             }
         }
     }

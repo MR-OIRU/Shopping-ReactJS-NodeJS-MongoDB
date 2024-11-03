@@ -1,0 +1,85 @@
+.customData{
+    .form-label{
+        font-weight: 300;
+    }
+    .Text{
+        box-shadow: 0px 0px 10px rgb(0, 255, 0);
+    }
+    .errText{
+        box-shadow: 0px 0px 10px red;
+    }
+    .text-error{
+        color: red;
+    }
+    .customDetailOrder{
+        .yourOrder{
+            margin-bottom: 20px;
+            border: 1px solid rgb(221, 221, 221);
+            border-radius: 5px;
+            padding: 1rem;
+        }
+        ul{
+            li{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                list-style: none;
+            }
+        }
+        ul.showAllProductPrice{
+            max-height: 20rem;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+        ul.showTotal{
+            padding: 30px;
+            border-radius: 5px;
+            background-color: #ffc107;
+        }
+
+        .paymentMethod{
+            .payment{
+                border: 1px solid rgb(221, 221, 221);
+                padding: 2rem;
+                border-radius: 5px;
+                margin-bottom: 3rem;
+                .cardTx{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .icon{
+                        width: 30px;
+                        height: 30px;
+                        margin: 10px;
+                    }
+                }
+                ul{
+                    li{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        list-style: none;
+                    }
+                }
+                
+                span{
+                    input[type="radio"]{
+                        height: 1.5rem;
+                        width: 1.5rem;
+                        accent-color:black;
+                    }
+                }
+            }
+        }
+        .alertDetail{
+            border: 1px solid rgb(221, 221, 221);
+            background-color: rgb(221, 221, 221);
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .submitPayment{
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

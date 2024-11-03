@@ -5,80 +5,71 @@ function ValidationCheckOut(values) {
     const zip_pattern = /^[0-9!@]+$/
     const phone_pattern = /^[+-]?\d+(\.\d+)?$/
     const address_pattern  = /^[A-Za-zก-๙0-9\s\-\.,\/]+$/
-    if(values.firstName == ""){
-        error.firstName = "Please enter your FirstName [ Thai , English ]"
+
+    if(values.FirstName == ""){
+        error.FirstName = "";
     }else if(!name_pattern.test(values.FirstName)){
-        error.firstName = "Please enter your FirstName [ Thai , English ]"
+        error.FirstName = "Please enter [ English  Or Thai ]";
+    }else if(values.FirstName.length < 3){
+        error.FirstName = "FirstName is too short"
     }else{
-        error.firstName = "";
+        error.FirstName = "Info submitted";
     }
 
-    if(values.lastName == ""){
-        error.lastName = "Please enter your LastName [ Thai , English ]"
-    }else if(!name_pattern.test(values.lastName)){
-        error.lastName = "Please enter your LastName [ Thai , English ]"
+    if(values.LastName == ""){
+        error.LastName = "";
+    }else if(!name_pattern.test(values.LastName)){
+        error.LastName = "Please enter [ English  Or Thai ]";
+    }else if(values.LastName.length < 3){
+        error.LastName = "LastName is too short"
     }else{
-        error.lastName = "";
+        error.LastName = "Info submitted";
     }
 
     if(values.Email == ""){
-        error.Email = "Please enter your email address correctly."
-    }else if(!email_pattern.test(values.Email)){
-        error.Email = "Please enter your email address correctly."
-    }else{
         error.Email = "";
-    }
-
-    if(values.CompanyName == ""){
-        error.CompanyName = "Please enter your CompanyName."
-    }else if(!address_pattern.test(values.CompanyName)){
-        error.CompanyName = "Please enter your CompanyName. [ Thai , English , Number]"
+    }else if(!email_pattern.test(values.Email)){
+        error.Email = "Please enter your email address correctly.";
     }else{
-        error.CompanyName = "";
-    }
-
-    if(values.CountryRegion == ""){
-        error.CountryRegion = "Please enter your CountryRegion."
-    }else if(!address_pattern.test(values.CountryRegion)){
-        error.CountryRegion = "Please enter your CountryRegion. [ Thai , English , Number]"
-    }else{
-        error.CountryRegion = "";
+        error.Email = "Info submitted";
     }
     
     if(values.StreetAddress == ""){
-        error.StreetAddress = "Please enter your StreetAddress."
-    }else if(!address_pattern.test(values.StreetAddress)){
-        error.StreetAddress = "Please enter your StreetAddress. [ Thai , English , Number]"
-    }else{
         error.StreetAddress = "";
+    }else if(!address_pattern.test(values.StreetAddress)){
+        error.StreetAddress = "Please enter your StreetAddress. [ Thai , English , Number]";
+    }else if(values.StreetAddress.length < 10){
+        error.StreetAddress = "StreetAddress is too short"
+    }else{
+        error.StreetAddress = "Info submitted";
     }
 
-    if(values.TownCity == ""){
-        error.TownCity = "Please enter your TownCity."
-    }else if(!address_pattern.test(values.TownCity)){
-        error.TownCity = "Please enter your TownCity. [ Thai , English , Number]"
+    if(values.Province == ""){
+        error.Province = "";
+    }else if(!name_pattern.test(values.Province)){
+        error.Province = "Please enter your Province. [ English  Or Thai ]";
     }else{
-        error.TownCity = "";
+        error.Province = "Info submitted";
     }
 
     if(values.ZIP == ""){
-        error.ZIP = "Please enter your ZIP."
+        error.ZIP = "";
     }else if(!zip_pattern.test(values.ZIP)){
-        error.ZIP = "Please enter your ZIP."
+        error.ZIP = "Please enter your ZIP. [Number]";
     }else if(values.ZIP.length < 5 || values.ZIP.length > 5){
-        error.ZIP = `Please enter your ZIP ( ${values.ZIP.length}/5 )`
+        error.ZIP = `Please enter your ZIP ( ${values.ZIP.length}/5 )`;
     }else{
-        error.ZIP = ""
+        error.ZIP = "Info submitted";
     }
 
     if(values.Phone == ""){
-        error.Phone = "Please enter your Phone."
+        error.Phone = "";
     }else if(!phone_pattern.test(values.Phone)){
-        error.Phone = "Please enter your Phone."
+        error.Phone = "Please enter your Phone.";
     }else if(values.Phone.length < 10 || values.Phone.length > 10){
-        error.Phone = `Please enter your Phone ( ${values.Phone.length}/10 )`
+        error.Phone = `Please enter your Phone ( ${values.Phone.length}/10 )`;
     }else{
-        error.Phone = ""
+        error.Phone = "Info submitted";
     }
 
    return error;

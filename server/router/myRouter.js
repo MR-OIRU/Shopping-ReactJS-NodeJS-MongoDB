@@ -112,6 +112,7 @@ router.post('/login',async (req,res) => {
                     Role : existingMember.Role,
                     Username : existingMember.Username,
                     Login : true,
+                    Cart : existingMember.CartUser
                 }
                 return res.status(200).json({message : 'Login Successfully!!'})
             }else{
@@ -140,13 +141,177 @@ router.post('/logout', async (req, res) => {
 
 router.get('/navbar', async (req, res) => {
     try{
-        const user = req.session
-        res.status(200).json(user)
+        return res.status(200).json({user : req.session})
     }catch(err){
         return res.status(500).json({ message : 'Server Error!!'})
     }
 })
 
+router.get('/', async (req, res) => {
+    try{
+        const queryAllProduct = await Product.aggregate([
+            {
+              $match: { ProductQuantity: { $gte: 1 } }
+            },
+            {
+              $lookup: {
+                from: "brands",
+                localField: "ProductBrand",
+                foreignField: "BrandID",
+                as: "brand"
+              }
+            }
+          ]);
+        if(queryAllProduct){
+            return  res.status(200).json(queryAllProduct);
+        }else{
+            return res.status(400).json({ message : 'Query All Product Error!!'})
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.get('/product', async (req,res) => {
+    try{
+        const queryAllProduct = await Product.aggregate([
+            {
+              $match: { ProductQuantity: { $gte: 1 } }
+            },
+            {
+              $lookup: {
+                from: "brands",
+                localField: "ProductBrand",
+                foreignField: "BrandID",
+                as: "brand"
+              }
+            }
+          ]);
+        const sessionData = req.session && req.session.user ? req.session.user : null;
+        if(queryAllProduct){
+            return res.status(200).json({ products: queryAllProduct, session: sessionData });
+        }else{
+            return res.status(400).json({ message : 'Query All Product Error!!'})
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.post('/product/addCart', async (req,res) => {
+    try{
+        const { productID } = req.body
+        const queryProduct = await Product.aggregate([
+            {
+              $match: { ProductID: productID } 
+            },
+            {
+              $lookup: {
+                from: "brands", 
+                localField: "ProductBrand", 
+                foreignField: "BrandID", 
+                as: "brand", 
+              },
+            },
+          ]);
+        if (queryProduct.length > 0) { 
+            return res.status(200).json({Product: queryProduct[0] });
+        } else {
+            return res.status(400).json({ message: 'Query Product Error!!' });
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'});
+    }
+})
+
+router.post('/product/addWishlist', async (req,res) => {
+    try{
+        const { productID } = req.body
+        const queryProduct = await Product.aggregate([
+            {
+              $match: { ProductID: productID } 
+            },
+            {
+              $lookup: {
+                from: "brands", 
+                localField: "ProductBrand", 
+                foreignField: "BrandID", 
+                as: "brand", 
+              },
+            },
+          ]);
+        if (queryProduct.length > 0) { 
+            return res.status(200).json({Product: queryProduct[0] });
+        } else {
+            return res.status(400).json({ message: 'Query Product Error!!' });
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'});
+    }
+})
+
+function isCart(req,res,next){
+    const user = req.session.user
+    console.log(user)
+    if(user){
+        if(user.Role === 'User'){
+            return next()
+        }else{
+            return res.json(user);
+        }
+    }else{
+        return res.json(user);
+    }
+}
+
+router.get('/cart',isCart, async (req,res) => {
+    try{
+        const user = req.session.user
+        return res.json(user);
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'});
+    }
+})
+
+router.get('/cart/checkout',isCart, async (req,res) => {
+    try{
+        const user = req.session.user
+        return res.json(user);
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'});
+    }
+})
+
+function generateOrderID() {
+    const randomNum = Math.floor(Math.random() * 1000000);
+    return `ORD${randomNum}`+ Math.random().toString(36).substr(2, 9).toUpperCase();
+}
+router.post('/checkout', async (req,res) => {
+    try{
+        const orderID = generateOrderID();
+        const { values, data, Username } = req.body;
+        const order = new Order({
+            Username : Username, 
+            orderID: orderID,
+            orderName: values.FirstName + " " + values.LastName,
+            orderAddress:   values.StreetAddress + " " + 
+                            values.Province + " " + 
+                            values.ZIP + " " + values.Phone,
+            orderProduct: data.Cart,
+            orderPriceTotal: data.TotalPrice,
+            orderAdditional: values.Additional,
+            orderStatus:'not confirmed'
+        })
+        const insert_order = saveData(order)
+        if(insert_order){
+            return res.status(200).json({ message : 'Order successfully'});
+        }else{
+            return res.status(400).json({ message : 'Order failed'});
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'});
+    }
+})
 
 //------------------------------------------------------ Admin ------------------------------------------------------
 function isAdmin(req,res,next){

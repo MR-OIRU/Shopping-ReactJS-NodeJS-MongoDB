@@ -11,6 +11,7 @@ import '../../assets/css/Form_Register.css'
 
 function Form_Register() {
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_API_URL;
   const [values, setValues] = useState({
     Role:"User",
     Username:"",
@@ -42,7 +43,6 @@ function Form_Register() {
   
   const handleSubmit = (e) =>{
     e.preventDefault()
-    const url = import.meta.env.VITE_API_URL;
     axios.post(`${url}register`,values).then((res) => {
         if(res.data.message === 'Register success'){
             withReactContent(Swal).fire({
