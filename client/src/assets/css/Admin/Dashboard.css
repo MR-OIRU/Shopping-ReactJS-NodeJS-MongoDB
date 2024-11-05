@@ -41,27 +41,151 @@
             color: black;
         }
     }
-}
-
-@media screen and (max-width:1400px) {
-    .customDashboard{
-        .customMember{
-            .HeadMember,.HeadAdmin,.HeadUser{
-                width: 230px;
+    .customDataOrder{
+        padding-top: 40px;
+        padding-bottom: 40px;
+        .ColOrder{
+            padding: 20px;
+            .HeadOrder{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                background-color: white;
+                border-radius: 5px;
+                color: black;
+                h5{
+                    text-align: center;
+                    padding: 10px;
+                }
             }
-            .Member{
-                width: 230px;
+            .Order{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100px;
+                border-radius: 5px;
+                background-color: white;
+                color: black;
             }
-            .Admin,.User{
-                width: 230px;
+    
+            .HeadConfirmed{
+                color: rgb(0, 97, 0);
+                background-color: rgb(198, 239, 206);
+                box-shadow: 0px 0px 10px rgb(129, 248, 153);
+                border-radius: 5px;
+                h5{
+                    text-align: center;
+                    padding: 10px;
+                }
+            }
+            .Confirmed{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgb(0, 97, 0);
+                background-color: rgb(198, 239, 206);
+                box-shadow: 0px 0px 10px rgb(129, 248, 153);
+                border-radius: 5px;
+                height: 100px;
+            }
+    
+            .HeadNotConfirmed{
+                color: rgb(156, 0, 6);
+                background-color: rgb(255, 199, 206);
+                box-shadow: 0px 0px 10px rgb(250, 136, 149);
+                border-radius: 5px;
+                h5{
+                    text-align: center;
+                    padding: 10px;
+                }
+            }
+            .NotConfirmed{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgb(156, 0, 6);
+                background-color: rgb(255, 199, 206);
+                box-shadow: 0px 0px 10px rgb(250, 136, 149);
+                border-radius: 5px;
+                height: 100px;
+            }
+        }
+        .ColSales{
+            padding: 20px;
+            .HeadSales{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                background-color: white;
+                border-radius: 5px;
+                color: black;
+                h5{
+                    text-align: center;
+                    padding: 10px;
+                }
+            }
+            .Sales{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                height: 309px;
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+    .customDataSales{
+        padding-top: 40px;
+        padding-bottom: 40px;
+        .ColProfit{
+            .HeadProfit{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                background-color: white;
+                border-radius: 5px;
+                color: black;
+                h5{
+                    text-align: center;
+                    padding: 10px;
+                }
+            }
+            .Profit{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                height: 200px;
+                background-color: white;
+                color: black;
+            }
+        }
+        .ColInventories{
+            .HeadInventories{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                background-color: white;
+                border-radius: 5px;
+                color: black;
+                h5{
+                    text-align: center;
+                    padding: 10px;
+                }
+            }
+            .Inventories{
+                box-shadow: 0px 0px 10px rgb(121, 121, 121);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                height: 200px;
+                background-color: white;
+                color: black;
             }
         }
     }
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width:1400px) {
     .customDashboard{
-        .customMember{
+        .customDataMember{
             .HeadMember,.HeadAdmin,.HeadUser{
                 width: 230px;
             }
@@ -77,7 +201,7 @@
 
 @media screen and (max-width:768px) {
     .customDashboard{
-        .customMember{
+        .customDataMember{
             .HeadMember,.HeadAdmin,.HeadUser{
                 width: 170px;
             }
@@ -88,12 +212,55 @@
                 width: 170px;
             }
         }
+        .customDataOrder{
+            padding-top: 0px;
+            .ColSales{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HeadSales{
+                    width: 70%;
+                }
+                .Sales{
+                    width: 70%;
+                    height: 200px;
+                }
+            }
+        }
+        .customDataSales{
+            padding-top: 0px;
+            .ColProfit{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HeadProfit{
+                    width: 250px;
+                }
+                .Profit{
+                    width: 250px;
+                }
+            }
+            .ColInventories{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HeadInventories{
+                    width: 250px;
+                }
+                .Inventories{
+                    width: 250px;
+                }
+            }
+        }
     }
 }
 
 @media screen and (max-width:576px) {
     .customDashboard{
-        .customMember{
+        .customDataMember{
             padding-top: 0px;
             .customCol{
                 display: flex;
@@ -103,13 +270,82 @@
                 padding-top: 40px;
             }
             .HeadMember,.HeadAdmin,.HeadUser{
-                width: 300px;
+                width: 250px;
             }
             .Member{
-                width: 300px;
+                width: 250px;
             }
             .Admin,.User{
-                width: 300px;
+                width: 250px;
+            }
+        }
+        .customDataOrder{
+            padding-top: 0px;
+            .ColOrder{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HeadOrder{
+                    width: 250px;
+                }
+                .Order{
+                    width: 250px;
+                }
+                .HeadConfirmed{
+                    width: 250px;
+                }
+                .Confirmed{
+                    width: 250px;
+                }
+        
+                .HeadNotConfirmed{
+                    margin-top: 30px;
+                    width: 250px;
+                }
+                .NotConfirmed{
+                    width: 250px;
+                }
+            }
+            .ColSales{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HeadSales{
+                    width: 250px;
+                }
+                .Sales{
+                    width: 250px;
+                }
+            }
+        }
+        .customDataSales{
+            padding-top: 0px;
+            .ColProfit{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HeadProfit{
+                    width: 250px;
+                }
+                .Profit{
+                    width: 250px;
+                }
+            }
+            .ColInventories{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                .HeadInventories{
+                    width: 250px;
+                }
+                .Inventories{
+                    width: 250px;
+                }
             }
         }
     }

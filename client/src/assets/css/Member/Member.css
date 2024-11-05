@@ -1,8 +1,8 @@
-.layoutMember {
+.LayoutMember {
     display: flex; 
 }
-@media screen and (max-width: 991px) {
-    .layoutMember{
+@media screen and (max-width: 1200px) {
+    .LayoutMember{
         display: block;
     }
 }

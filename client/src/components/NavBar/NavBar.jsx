@@ -108,14 +108,14 @@ function NavBar() {
                 <BsPersonCircle />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item >Profile</Dropdown.Item>
-                  <Dropdown.Item >Order</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/member')}>Profile</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/member/order')}>Order</Dropdown.Item>
                   <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
           </Col>
-          <Col xs={3} sm={4} md={3} lg={3} xl={3} className={User && User.Role === 'Admin' && login.Login === true ? "AdminLogin" : "AdminBox"}>
+          <Col xs={3} sm={4} md={3} lg={3} xl={3} className={User && User.Role === 'Admin' && User.Login === true ? "AdminLogin" : "AdminBox"}>
             <div className="admin_Bx">
               <Dropdown>
                 <Dropdown.Toggle variant="warning">

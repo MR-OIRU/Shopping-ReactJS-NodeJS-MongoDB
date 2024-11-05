@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from 'axios'
 import NavBarAdmin from '../../components/Admin/NavBarAdmin';
-
+import Order from '../../components/Admin/Order/Order';
 
 import '../../assets/css/Admin/Admin.css'
 
@@ -30,7 +30,7 @@ function AdminOrder() {
     <>
       <div className="LayoutAdmin">
         <NavBarAdmin/>
-
+        <Order/>
       </div>
     </>
   );

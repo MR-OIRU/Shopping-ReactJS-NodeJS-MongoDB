@@ -1,4 +1,6 @@
-.customData{
+.customCheckoutData{
+    padding-top: 100px;
+    padding-bottom: 100px;
     .form-label{
         font-weight: 300;
     }

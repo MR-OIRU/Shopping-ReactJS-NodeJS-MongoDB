@@ -330,6 +330,47 @@ function isAdmin(req,res,next){
 
 router.get('/admin' ,isAdmin, async (req,res) => {
     try{
+        const totalMembersCount = await Member.countDocuments();
+        const userCount = await Member.countDocuments({ Role: 'User' });
+        const adminCount = await Member.countDocuments({ Role: 'Admin' });
+
+        const totalOrderCount = await Order.countDocuments();
+        const ConfirmedCount = await Order.countDocuments({ orderStatus: 'confirmed' });
+        const NotConfirmedCount = await Order.countDocuments({ orderStatus: 'not confirmed' });
+        const totalProductQuantity = await Product.aggregate([
+            {
+                $group: {
+                    _id: null,
+                    totalQuantity: { $sum: "$ProductQuantity" } // รวมค่า ProductQuantity
+                }
+            }
+        ]);
+
+        const totalOrderPrice = await Order.aggregate([
+            {
+                $group: {
+                    _id: null,
+                    totalPrice: { $sum: "$orderPriceTotal" } // รวมค่า OrderPriceTotal
+                }
+            }
+        ]);
+        
+        if (totalMembersCount >= 0 && userCount >= 0 && adminCount >= 0 && 
+            totalOrderCount >= 0 && ConfirmedCount >= 0 && NotConfirmedCount >= 0) {
+            return res.status(200).json({
+                total_members: totalMembersCount,
+                Member: userCount,
+                Admin: adminCount,
+                total_orders: totalOrderCount,
+                Confirmed: ConfirmedCount,
+                NotConfirmed: NotConfirmedCount,
+                total_products: totalProductQuantity[0].totalQuantity,
+                total_orderPrice: totalOrderPrice[0]?.totalPrice || 0
+            });
+        } else {
+            // Send error response if any count is invalid
+            return res.status(400).json({ message: 'QueryMember Error!!' });
+        }
     }catch(err){
         return res.status(500).json({ message : 'Server Error!!'})
     }
@@ -735,7 +776,7 @@ router.post('/admin/product/edit', async (req, res) => {
 
 router.post('/admin/product/update', upload, async (req, res) => {
     try {
-        const { ProductID, ProductName, ProductBrand, CostPrice, SellPrice, ProductQuantity,OldImage } = req.body;
+        const { ProductID, ProductName, ProductBrand, CostPrice, SellPrice, ProductQuantity, OldImage } = req.body;
         const errText = req.fileValidationError
         if (errText) {
             return res.status(400).json({ message: errText });
@@ -798,14 +839,179 @@ router.post('/admin/product/update', upload, async (req, res) => {
 // Admin/Order
 router.get('/admin/order' , isAdmin , async (req,res) => {
     try{
+        const orderQuery = await Order.find().sort({date:-1})
+        if(orderQuery){
+           return res.status(200).json({orders: orderQuery});
+        }
     }catch(err){
         return res.status(500).json({ message : 'Server Error!!'})
     }
 })
-//------------------------------------------------------ User ------------------------------------------------------
-router.get('/', async (req, res) => {
+
+router.post('/admin/order/edit',async (req,res) => {
     try{
-        
+        const { orderID } = req.body
+        const QueryByID = await Order.findOne({orderID:orderID})
+        if(QueryByID){
+            return res.status(200).json(QueryByID)
+        }else{
+            return res.status(400).json({ message : 'Error. Cannot Query Order By ID'})
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.post('/admin/order/update',async (req,res) => {
+    try{
+        const { orderID } = req.body;
+        const updateOrder = await Order.findOneAndUpdate(
+            { orderID: orderID }, // ค้นหาด้วย orderID
+            { orderStatus: 'confirmed' }
+        );
+          if(updateOrder){
+            const message = 'update successfully';
+            res.status(200).json(message)
+          }else{
+            const message = 'Error. Cannot Update';
+            res.status(400).json(message)
+          }
+    }catch(err){
+        console.error(err);
+        const message = 'Error you cannot QueryOrder By ID';
+        res.status(500).send(message)
+    }
+})
+
+//------------------------------------------------------ Member ------------------------------------------------------
+function isMember(req,res,next){
+    const user = req.session.user
+    if(user){
+        if(user.Role === 'User'){
+            return next()
+            
+        }else{
+            return res.json(user);
+        }
+    }else{
+        return res.json(user);
+    }
+}
+
+router.get('/member', isMember, async (req, res) => {
+    try{
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.post('/member', async (req, res) => {
+    try{
+        const user = req.session.user
+        const query = await Member.findOne({ Username: user.Username }).select('-_id -Password');
+        // นับจำนวนสถานะ confirmed และ not confirmed
+        const orderSummary = await Order.aggregate([
+            { $match: { Username: user.Username } },
+            {
+            $group: {
+                _id: "$orderStatus", 
+                count: { $sum: 1 } 
+            }
+            }
+        ]);
+        // จัดเก็บจำนวน confirmed และ not confirmed
+        let confirmedCount = 0;
+        let notConfirmedCount = 0;
+        orderSummary.forEach(status => {
+            if (status._id === "confirmed") {
+            confirmedCount = status.count;
+            } else if (status._id === "not confirmed") {
+            notConfirmedCount = status.count;
+            }
+        });
+        if(query){
+            return res.status(200).json({
+                User: query,              
+                ConfirmedCount: confirmedCount,   
+                notConfirmedCount: notConfirmedCount
+              });
+        }else{
+            return  res.status(400).json({message : 'Error. Cannot Query Member By Username'})
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.post('/member/edit', async (req, res) => {
+    try{
+        const user = req.session.user
+        const queryMember = await Member.findOne({ Username:user.Username }).select('-_id -Password');
+        if(queryMember){
+            return res.status(200).json(queryMember)
+        }else{
+            return res.status(400).json({ message : 'Query Data Member Error!!'})
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.post('/member/update', async (req, res) => {
+    try{
+        const { OldEmail,Data } = req.body
+        // CheckValue
+        if(!Data.Email || !Data.FirstName || !Data.LastName || !Data.Sex || !Data.Phone){ 
+            return res.status(400).json({ message : 'Value is required!!' }) 
+        }
+         //Update
+        if(OldEmail === Data.Email){
+            const updateMember = await Member.findOneAndUpdate(
+                { Username: Data.Username },
+                Data
+            );
+            if(updateMember){
+                return res.status(200).json({ message: 'Update Member By Username success!!' });
+            }else{
+                return res.status(400).json({ message: 'Update Member By Username Error!!' });
+            }
+        }else{
+            const checkMember = await Member.findOne({ Email: Data.Email })
+            if(checkMember){
+                return res.status(400).json({ message: 'This email is already in use by another user in the system.' });
+            }else{
+                const updateMember = await Member.findOneAndUpdate(
+                    { Username: Data.Username },
+                    Data
+                );
+                if(updateMember){
+                    return res.status(200).json({ message: 'Update Member By Username success!!' });
+                }else{
+                    return res.status(400).json({ message: 'Update Member By Username Error!!' });
+                }
+            }
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.get('/member/order', isMember, async (req, res) => {
+    try{
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.post('/member/order', async (req, res) => {
+    try{
+        const user = req.session.user
+        const queryOrder = await Order.find({ Username:user.Username }).sort({ orderDate: -1 , orderStatus: -1})
+        if (queryOrder) {
+            return res.status(200).json({ orders: queryOrder });
+        }else{
+            return res.status(400).json({ message : 'Not Query Order By ID'});
+        }
     }catch(err){
         return res.status(500).json({ message : 'Server Error!!'})
     }

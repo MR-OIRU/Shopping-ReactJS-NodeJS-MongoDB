@@ -11,7 +11,7 @@ import AdminProduct from './page/Admin/AdminProduct';
 import AdminOrder from './page/Admin/AdminOrder';
 
 import Member from './page/Member/Member';
-
+import Order from './page/Member/Order';
 import { CartProvider } from './components/CartContext'
 
 import {
@@ -33,6 +33,7 @@ function App() {
             <Route path="/product" element={<Product />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/cart/checkout" element={<CheckOut />} />
+            
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/member" element={<AdminMember />} />
             <Route path="/admin/brand" element={<AdminBrand />} />
@@ -40,6 +41,7 @@ function App() {
             <Route path="/admin/order" element={<AdminOrder />} />
 
             <Route path="/member" element={<Member />} />
+            <Route path="/member/order" element={<Order />} />
           </Routes>
       </Router>
     </CartProvider>

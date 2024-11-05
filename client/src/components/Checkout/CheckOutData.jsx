@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Container,Row, Col, Form, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'; 
 import { useProductInCart , usePriceInCart, useCartUser, useUsername} from '../CartContext';
 import { BsGoogle, BsCreditCard, BsWallet2 } from "react-icons/bs";
 
@@ -12,7 +11,6 @@ import withReactContent from 'sweetalert2-react-content'
 
 function CheckOutData() {
   const url = import.meta.env.VITE_API_URL
-  const navigate = useNavigate()
 
   const { CartUser } = useCartUser();
   const { Username } = useUsername();
@@ -77,7 +75,7 @@ function CheckOutData() {
                   showConfirmButton: false
                 }).then(()=>{
                   localStorage.removeItem(key);
-                  navigate('/')
+                  window.location.href = '/'
                 })
               }
             }
@@ -100,7 +98,7 @@ function CheckOutData() {
         return (
           <>
             <Container>
-              <div className="customData">
+              <div className="customCheckoutData">
                 <Row>
                   <Col xl={5}>
                   <h3 className="mb-3">Billing Details</h3>

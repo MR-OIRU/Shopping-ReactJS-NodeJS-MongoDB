@@ -1,5 +1,5 @@
 .customMember{
-    background-color: #cccccc;  
+    background-color: #cccccc;
     color: white;
     flex: 1;
     padding-top: 30px;
@@ -15,6 +15,7 @@
             .rdt_TableHeadRow{
                 background-color: #000000; /* เปลี่ยนสีพื้นหลังของ header */
                 color: white;
+                font-size: 0.9rem;
               }
               .rdt_TableRow {
                 transition: background-color 0.2s; /* เพิ่ม transition ให้กับแถว */

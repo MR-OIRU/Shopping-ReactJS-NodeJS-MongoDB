@@ -104,7 +104,7 @@ const CartData = () => {
 return (
     <>
         <Container>
-            <div className="customData">
+            <div className="customCartData">
                 <Row>
                     <Col xl={9}>
                     <Table bordered hover responsive>
