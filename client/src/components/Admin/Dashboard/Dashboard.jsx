@@ -111,7 +111,7 @@ const Dashboard = () => {
                                 <h5> Profit </h5>
                             </div>
                             <div className="Profit mt-3">
-                                <h2>{countOrder} บาท</h2>
+                                <h2>{countOrder} ฿</h2>
                             </div>
                       </Col>
                       <Col xs={12} sm={6} md={6} lg={6} xl={6} className='ColInventories'>
