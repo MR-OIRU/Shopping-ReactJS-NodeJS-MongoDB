@@ -67,7 +67,7 @@ const Product = () => {
       createColumn('Action', null, true, row => (
           <div className="action-buttons">
               <Button variant="warning" onClick={() => handleEdit(row.ProductID)}><BsPencilSquare /></Button>
-              <Button variant="danger" onClick={() => handleDelete(row.ProductID)}><BsTrash /></Button>
+              <Button variant="danger" onClick={() => handleDelete(row.ProductID)} disabled><BsTrash /></Button>
           </div>
       ))
   ];

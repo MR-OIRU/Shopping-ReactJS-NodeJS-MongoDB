@@ -1,0 +1,340 @@
+[{
+  "_id": {
+    "$oid": "6721bcb4ca2a750dec87a404"
+  },
+  "ProductID": "PN0000001",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High OG Yellow Toe",
+  "ProductQuantity": 1,
+  "ProductImage": "1730438991709.jpg",
+  "CostPrice": 3000,
+  "SellPrice": 5518,
+  "ProductDate": {
+    "$date": "2024-10-30T04:57:24.185Z"
+  },
+  "__v": 0,
+  "ProductSold": 0
+},
+{
+  "_id": {
+    "$oid": "6721c1d85f09d23115adb328"
+  },
+  "ProductID": "PN0000002",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High Off-White University Blue (UNC)",
+  "ProductQuantity": 0,
+  "ProductImage": "1730439001437.jpg",
+  "CostPrice": 30000,
+  "SellPrice": 35000,
+  "ProductDate": {
+    "$date": "2024-10-30T05:19:20.349Z"
+  },
+  "__v": 0,
+  "ProductSold": 1
+},
+{
+  "_id": {
+    "$oid": "6721c79c24cba4e1b7e71936"
+  },
+  "ProductID": "PN0000003",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High OG Varsity Red",
+  "ProductQuantity": 0,
+  "ProductImage": "1730439011282.jpg",
+  "CostPrice": 5000,
+  "SellPrice": 6600,
+  "ProductDate": {
+    "$date": "2024-10-30T05:43:56.509Z"
+  },
+  "__v": 0,
+  "ProductSold": 1
+},
+{
+  "_id": {
+    "$oid": "6721c9c024cba4e1b7e7194d"
+  },
+  "ProductID": "PN0000004",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Mid White Black",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439030355.jpg",
+  "CostPrice": 5000,
+  "SellPrice": 6600,
+  "ProductDate": {
+    "$date": "2024-10-30T05:53:04.666Z"
+  },
+  "__v": 0,
+  "ProductSold": 0
+},
+{
+  "_id": {
+    "$oid": "6721c9d824cba4e1b7e71959"
+  },
+  "ProductID": "PN0000005",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High OG White Cement",
+  "ProductQuantity": 0,
+  "ProductImage": "1730439050430.jpg",
+  "CostPrice": 5000,
+  "SellPrice": 6600,
+  "ProductDate": {
+    "$date": "2024-10-30T05:53:28.608Z"
+  },
+  "__v": 0,
+  "ProductSold": 0
+},
+{
+  "_id": {
+    "$oid": "6721c9e924cba4e1b7e71965"
+  },
+  "ProductID": "PN0000006",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High OG Lucky Green (GS)",
+  "ProductQuantity": 0,
+  "ProductImage": "1730439087540.jpg",
+  "CostPrice": 2000,
+  "SellPrice": 3000,
+  "ProductDate": {
+    "$date": "2024-10-30T05:53:45.920Z"
+  },
+  "__v": 0,
+  "ProductSold": 1
+},
+{
+  "_id": {
+    "$oid": "6721c9fb24cba4e1b7e71971"
+  },
+  "ProductID": "PN0000007",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 High OG Visionaire",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439093033.jpg",
+  "CostPrice": 5000,
+  "SellPrice": 6600,
+  "ProductDate": {
+    "$date": "2024-10-30T05:54:03.834Z"
+  },
+  "__v": 0,
+  "ProductSold": 0
+},
+{
+  "_id": {
+    "$oid": "6721ca1c24cba4e1b7e7197d"
+  },
+  "ProductID": "PN0000008",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Mid SE White Ice Blue",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439098905.jpg",
+  "CostPrice": 3000,
+  "SellPrice": 4200,
+  "ProductDate": {
+    "$date": "2024-10-30T05:54:36.633Z"
+  },
+  "__v": 0,
+  "ProductSold": 0
+},
+{
+  "_id": {
+    "$oid": "6721ca3e24cba4e1b7e71989"
+  },
+  "ProductID": "PN0000009",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High Satin Black Toe",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439107489.jpg",
+  "CostPrice": 5000,
+  "SellPrice": 6600,
+  "ProductDate": {
+    "$date": "2024-10-30T05:55:10.668Z"
+  },
+  "__v": 0,
+  "ProductSold": 0
+},
+{
+  "_id": {
+    "$oid": "6721ca5824cba4e1b7e71997"
+  },
+  "ProductID": "PN0000010",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High OG Lost and Found",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439114740.jpg",
+  "CostPrice": 6000,
+  "SellPrice": 8740,
+  "ProductDate": {
+    "$date": "2024-10-30T05:55:36.032Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "6721ca7924cba4e1b7e719a3"
+  },
+  "ProductID": "PN0000011",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High Off-White Chicago",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439125604.jpg",
+  "CostPrice": 40000,
+  "SellPrice": 99000,
+  "ProductDate": {
+    "$date": "2024-10-30T05:56:09.738Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "6721ca8d24cba4e1b7e719af"
+  },
+  "ProductID": "PN0000012",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro AJKO Chicago (2021)",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439133898.jpg",
+  "CostPrice": 3000,
+  "SellPrice": 5540,
+  "ProductDate": {
+    "$date": "2024-10-30T05:56:29.704Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "6721caa124cba4e1b7e719bb"
+  },
+  "ProductID": "PN0000013",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Mid Lakers (2022)",
+  "ProductQuantity": 0,
+  "ProductImage": "1730439143362.jpg",
+  "CostPrice": 2000,
+  "SellPrice": 2499,
+  "ProductDate": {
+    "$date": "2024-10-30T05:56:49.412Z"
+  },
+  "__v": 0,
+  "ProductSold": 1
+},
+{
+  "_id": {
+    "$oid": "6721cab324cba4e1b7e719c7"
+  },
+  "ProductID": "PN0000014",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Low Golf Court Purple",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439151064.jpg",
+  "CostPrice": 3000,
+  "SellPrice": 4740,
+  "ProductDate": {
+    "$date": "2024-10-30T05:57:07.105Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "6721cac824cba4e1b7e719d3"
+  },
+  "ProductID": "PN0000015",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Mid Light Smoke Grey Anthracite",
+  "ProductQuantity": 0,
+  "ProductImage": "1730439156863.jpg",
+  "CostPrice": 3000,
+  "SellPrice": 4200,
+  "ProductDate": {
+    "$date": "2024-10-30T05:57:28.040Z"
+  },
+  "__v": 0,
+  "ProductSold": 1
+},
+{
+  "_id": {
+    "$oid": "6721cae424cba4e1b7e719df"
+  },
+  "ProductID": "PN0000016",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Low Fragment x Travis Scott",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439163947.jpg",
+  "CostPrice": 30000,
+  "SellPrice": 44000,
+  "ProductDate": {
+    "$date": "2024-10-30T05:57:56.181Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "6721cafe24cba4e1b7e719eb"
+  },
+  "ProductID": "PN0000017",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro Low Dior",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439170692.jpg",
+  "CostPrice": 6000,
+  "SellPrice": 229998,
+  "ProductDate": {
+    "$date": "2024-10-30T05:58:22.584Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "6721cb1824cba4e1b7e719f7"
+  },
+  "ProductID": "PN0000018",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High OG Bloodline",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439177386.jpg",
+  "CostPrice": 5000,
+  "SellPrice": 7300,
+  "ProductDate": {
+    "$date": "2024-10-30T05:58:48.104Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "6721cb2a24cba4e1b7e71a03"
+  },
+  "ProductID": "PN0000019",
+  "ProductBrand": "BN0000002",
+  "ProductName": "Jordan 1 Retro High OG University Blue",
+  "ProductQuantity": 1,
+  "ProductImage": "1730439183534.jpg",
+  "CostPrice": 7000,
+  "SellPrice": 9040,
+  "ProductDate": {
+    "$date": "2024-10-30T05:59:06.034Z"
+  },
+  "__v": 0,
+  "ProductSold": "0"
+},
+{
+  "_id": {
+    "$oid": "672ae65303abcbd0da1a4840"
+  },
+  "ProductID": "PN0000020",
+  "ProductBrand": "BN0000001",
+  "ProductName": "Yeezy Boost 350 V2 Carbon Beluga",
+  "ProductQuantity": 1,
+  "ProductImage": "1730864723395.jpg",
+  "CostPrice": 4500,
+  "SellPrice": 6580,
+  "ProductSold": 0,
+  "ProductDate": {
+    "$date": "2024-11-06T03:45:23.402Z"
+  },
+  "__v": 0
+}]

@@ -85,7 +85,7 @@ function NavBar() {
                 <Nav className="ms-auto">
                   <Nav.Link onClick={() => navigate('/')}>Home</Nav.Link>
                   <Nav.Link onClick={() => navigate('/product')}>Product</Nav.Link>
-                  <Nav.Link onClick={() => navigate('/')}>contact</Nav.Link>
+                  <Nav.Link href="https://oirudev.com/" target='_blank'>contact</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>

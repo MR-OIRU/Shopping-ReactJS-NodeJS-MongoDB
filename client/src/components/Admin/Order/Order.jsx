@@ -70,7 +70,7 @@ const columns = [
     createColumn('Action', null, false, row => (
         <div className="action-buttons">
             <Button variant="warning" onClick={() => handleShow(row.orderID)}><BsEye /></Button>
-            <Button variant="danger" onClick={() => handleDelete(row.orderID)}><BsTrash /></Button>
+            <Button variant="danger" onClick={() => handleDelete(row.orderID)} disabled={row.orderStatus === 'confirmed'}><BsTrash /></Button>
         </div>
     ), "150px"),
 ];
@@ -251,7 +251,7 @@ const columns = [
               <Button variant="danger" onClick={handleClose}>
                   Close
               </Button>
-              <Button variant="success" onClick={() => handleUpdate(orderDetail.orderID)}>
+              <Button variant="success" onClick={() => handleUpdate(orderDetail.orderID)} disabled={orderDetail.orderStatus === 'confirmed'}>
                   Update
               </Button>
               </Modal.Footer>

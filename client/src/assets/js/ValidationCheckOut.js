@@ -1,6 +1,6 @@
 function ValidationCheckOut(values) {
     let error = {}
-    const name_pattern  = /^[A-Za-zก-๙0-9]+$/
+    const name_pattern  = /^[A-Za-zก-๙]+$/
     const email_pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const zip_pattern = /^[0-9!@]+$/
     const phone_pattern = /^[+-]?\d+(\.\d+)?$/

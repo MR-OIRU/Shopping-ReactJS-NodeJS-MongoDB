@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "671f146d0e865018f6c989f0"
+  },
+  "Role": "User",
+  "Username": "user",
+  "Email": "user@gmail.com",
+  "FirstName": "user",
+  "LastName": "Oil",
+  "Phone": "0000000000",
+  "Password": "$2a$10$dEJOr897fS78Gf5DYoFzSO3wBYxqJRibVw0Vh.VS0ryFc5jcUN.B.",
+  "CartUser": "1435dc70-f70d-4d3f-a555-08d11275eb63",
+  "Date": {
+    "$date": "2024-10-28T04:34:53.845Z"
+  },
+  "__v": 0,
+  "Sex": "Male"
+},
+{
+  "_id": {
+    "$oid": "671f14e30b5d9bb3e5d8aa05"
+  },
+  "Role": "Admin",
+  "Username": "admin.oil",
+  "Email": "admin.oil@gmail.com",
+  "FirstName": "Admin",
+  "LastName": "Oil",
+  "Phone": "1234567890",
+  "Password": "$2a$10$TnD6TbrnpuUiy4oxKTLoA.L8Mtf4EyYjh13otJ5SraWemKf2FYeXy",
+  "CartUser": "1f0bbc61-5aa4-4db5-84fa-47325cc9f5ae",
+  "Date": {
+    "$date": "2024-10-28T04:36:51.265Z"
+  },
+  "__v": 0,
+  "Sex": "Male"
+},
+{
+  "_id": {
+    "$oid": "672065cb4f796eeba69cf677"
+  },
+  "Role": "Admin",
+  "Username": "admin.john",
+  "Email": "admin.john@gmail.com",
+  "FirstName": "Admin",
+  "LastName": "John",
+  "Phone": "1234567890",
+  "Password": "$2a$10$K1HLV.FXdoxaTvCFmxAGP.y1wxh2JnaDY6V70J3ysdWgn0qC/VIYu",
+  "CartUser": "42b88685-9cbd-4f73-abf9-6cc08b8e0886",
+  "Date": {
+    "$date": "2024-10-29T04:34:19.998Z"
+  },
+  "__v": 0,
+  "Sex": "Male"
+}]
