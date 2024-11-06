@@ -290,6 +290,7 @@ router.post('/checkout', async (req,res) => {
     try{
         const orderID = generateOrderID();
         const { values, data, Username } = req.body;
+
         const order = new Order({
             Username : Username, 
             orderID: orderID,
@@ -302,7 +303,29 @@ router.post('/checkout', async (req,res) => {
             orderAdditional: values.Additional,
             orderStatus:'not confirmed'
         })
-        const insert_order = saveData(order)
+
+        for (let i = 0; i < data.Cart.length; i++) {
+            const productID = data.Cart[i].productID;
+            const quantityOrder = data.Cart[i].productQuantity;
+
+            const product = await Product.findOne({ ProductID: productID });
+            if (product) {
+                // ตรวจสอบว่ามีสินค้ามากพอที่จะขายหรือไม่
+                if (product.ProductQuantity >= quantityOrder) {
+                    product.ProductQuantity -= quantityOrder;
+                    await product.save(); // อัพเดทจำนวนสินค้า
+                } else {
+                    return res.status(400).json({
+                        message: `Insufficient stock for product ${product.ProductName}`,
+                        productName: product.ProductName
+                    });
+                }
+            } else {
+                return res.status(404).json({ message: `Product with ID ${productID} not found` });
+            }
+        }
+
+        const insert_order = await saveData(order)
         if(insert_order){
             return res.status(200).json({ message : 'Order successfully'});
         }else{
@@ -331,12 +354,14 @@ function isAdmin(req,res,next){
 router.get('/admin' ,isAdmin, async (req,res) => {
     try{
         const totalMembersCount = await Member.countDocuments();
-        const userCount = await Member.countDocuments({ Role: 'User' });
-        const adminCount = await Member.countDocuments({ Role: 'Admin' });
+        const totalUserCount = await Member.countDocuments({ Role: 'User' });
+        const totalAdminCount = await Member.countDocuments({ Role: 'Admin' });
 
         const totalOrderCount = await Order.countDocuments();
-        const ConfirmedCount = await Order.countDocuments({ orderStatus: 'confirmed' });
-        const NotConfirmedCount = await Order.countDocuments({ orderStatus: 'not confirmed' });
+        const totalConfirmedCount = await Order.countDocuments({ orderStatus: 'confirmed' });
+        const totalNotConfirmedCount = await Order.countDocuments({ orderStatus: 'not confirmed' });
+
+        //จำนวน Product ทั้งหมด เหลือ กี่ ชิ้น
         const totalProductQuantity = await Product.aggregate([
             {
                 $group: {
@@ -346,26 +371,57 @@ router.get('/admin' ,isAdmin, async (req,res) => {
             }
         ]);
 
-        const totalOrderPrice = await Order.aggregate([
+        const totalQuantity = totalProductQuantity.length > 0 ? totalProductQuantity[0].totalQuantity : 0;
+
+        //ยอดขายของสินค้าที่ขายไปทั้งหมด
+        const totalSales = await Product.aggregate([
+            {
+                $match: { ProductSold: { $gt: 0 } } // เฉพาะสินค้าที่มีการขาย
+            },
             {
                 $group: {
-                    _id: null,
-                    totalPrice: { $sum: "$orderPriceTotal" } // รวมค่า OrderPriceTotal
+                    _id: "$ProductID",
+                    totalSalesAmount: { $sum: { $multiply: ["$SellPrice", "$ProductSold"] } } // คำนวณยอดขาย
                 }
             }
         ]);
+
+        const grandTotalSales = totalSales.reduce((accumulator, current) => {
+            return accumulator + (current.totalSalesAmount || 0);
+        }, 0);
+
+        //ต้นทุนของสินค้าที่ขายไปทั้งหมด
+        const totalCost = await Product.aggregate([
+            {
+                $match: { ProductSold: { $gt: 0 } } // เฉพาะสินค้าที่มีการขาย
+            },
+            {
+                $group: {
+                    _id: "$ProductID",
+                    totalCostAmount: { $sum: { $multiply: ["$CostPrice", "$ProductSold"] } } // คำนวณยอดขาย
+                }
+            }
+        ]);
+
+        const grandTotalCost = totalCost.reduce((accumulator, current) => {
+            return accumulator + (current.totalCostAmount || 0);
+        }, 0);
+
+        //กำไรที่เหลือ
+        const TotalProfit = grandTotalSales - grandTotalCost
         
-        if (totalMembersCount >= 0 && userCount >= 0 && adminCount >= 0 && 
-            totalOrderCount >= 0 && ConfirmedCount >= 0 && NotConfirmedCount >= 0) {
+        if (totalMembersCount >= 0 && totalUserCount >= 0 && totalAdminCount >= 0 && 
+            totalOrderCount >= 0 && totalConfirmedCount >= 0 && totalNotConfirmedCount >= 0) {
             return res.status(200).json({
                 total_members: totalMembersCount,
-                Member: userCount,
-                Admin: adminCount,
+                Member: totalUserCount,
+                Admin: totalAdminCount,
                 total_orders: totalOrderCount,
-                Confirmed: ConfirmedCount,
-                NotConfirmed: NotConfirmedCount,
-                total_products: totalProductQuantity[0].totalQuantity,
-                total_orderPrice: totalOrderPrice[0]?.totalPrice || 0
+                Confirmed: totalConfirmedCount,
+                NotConfirmed: totalNotConfirmedCount,
+                total_products: totalQuantity,
+                Sales: grandTotalSales,
+                Profit: TotalProfit
             });
         } else {
             // Send error response if any count is invalid
@@ -865,21 +921,57 @@ router.post('/admin/order/edit',async (req,res) => {
 router.post('/admin/order/update',async (req,res) => {
     try{
         const { orderID } = req.body;
+
+        const order = await Order.findOne({ orderID: orderID });
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
         const updateOrder = await Order.findOneAndUpdate(
-            { orderID: orderID }, // ค้นหาด้วย orderID
-            { orderStatus: 'confirmed' }
+            { orderID: orderID },{ orderStatus: 'confirmed' },{ new: true }
         );
-          if(updateOrder){
-            const message = 'update successfully';
-            res.status(200).json(message)
+          if(updateOrder){      
+            for (let i = 0; i < order.orderProduct.length; i++) {
+                const productID = order.orderProduct[i].productID;
+                const quantityOrder = order.orderProduct[i].productQuantity;
+                const product = await Product.findOne({ ProductID: productID });
+                if (product) {
+                    product.ProductSold += quantityOrder
+                    await product.save();
+                }
+            }
+            return  res.status(200).json({message : 'update successfully'})
           }else{
-            const message = 'Error. Cannot Update';
-            res.status(400).json(message)
+            return  res.status(400).json({message : 'Error. Cannot Update'})
           }
     }catch(err){
-        console.error(err);
-        const message = 'Error you cannot QueryOrder By ID';
-        res.status(500).send(message)
+        return res.status(500).json({ message : 'Server Error!!'})
+    }
+})
+
+router.post('/admin/order/delete',async (req,res) => {
+    try{
+        const { orderID } = req.body
+        const order = await Order.findOne({orderID:orderID})
+        if(order.orderStatus === 'confirmed'){
+            return res.status(400).json({ message : 'Cannot Delete'})
+        }else{
+            for (let i = 0; i < order.orderProduct.length; i++) {
+                const productID = order.orderProduct[i].productID;
+                const quantityOrder = order.orderProduct[i].productQuantity;
+                const product = await Product.findOne({ ProductID: productID });
+                if (product) {
+                    product.ProductQuantity += quantityOrder
+                    await product.save();
+                }
+            }
+            const deleteOrder = await Order.deleteOne({ orderID: orderID });
+            if(deleteOrder){
+                return res.status(200).json({ message : 'Delete successfully'})
+            }
+        }
+    }catch(err){
+        return res.status(500).json({ message : 'Server Error!!'})
     }
 })
 

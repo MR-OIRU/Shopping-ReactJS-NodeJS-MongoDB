@@ -30,15 +30,15 @@ const OrderData = () => {
                                         <Card.Text className='Address'>
                                             Address : {item.orderAddress}
                                         </Card.Text>
-                                        <Card.Text className='Detail'>
-                                        {item.orderProduct.map((product, productIndex) => (
-                                            <div className="orderDetail" key={productIndex}>
-                                                <img src={`/public/image/product/${product.productImage}`} alt="" />
-                                                {product.productBrand} {product.productName} x {product.productQuantity} <br/>
-                                                [ Price : {Number(product.productPrice*product.productQuantity).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ฿ ]
-                                            </div>
-                                        ))}
-                                        </Card.Text>
+                                        <div className='Detail'>
+                                            {item.orderProduct.map((product, productIndex) => (
+                                                <div className="orderDetail" key={productIndex}>
+                                                    <img src={`/image/product/${product.productImage}`} alt="" />
+                                                    {product.productBrand} {product.productName} x {product.productQuantity} <br/>
+                                                    [ Price : {Number(product.productPrice*product.productQuantity).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ฿ ]
+                                                </div>
+                                            ))}
+                                        </div>
                                         <Card.Text className="customTotal">
                                                 Price Total : {Number(item.orderPriceTotal).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ฿
                                                 <br/><br/>

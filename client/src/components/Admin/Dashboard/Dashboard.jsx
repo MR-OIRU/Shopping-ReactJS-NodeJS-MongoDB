@@ -17,9 +17,10 @@ const Dashboard = () => {
     const [countConfirmed, setCountConfirmed] = useState("")
     const [countNotConfirmed, setCountNotConfirmed] = useState("")
 
-    const [countProduct, setCountProduct] = useState("")
+    const [countSales, setCountSales] = useState("")
+    const [countProfit, setCountProfit] = useState("")
 
-    const [countOrderPrice, setCountOrderPrice] = useState("")
+    const [countProduct, setCountProduct] = useState("")
     useEffect(()=>{
         axios.get(`${url}admin`).then((res)=>{
             setCountMember(res.data.total_members)
@@ -31,7 +32,9 @@ const Dashboard = () => {
             setCountNotConfirmed(res.data.NotConfirmed)
 
             setCountProduct(res.data.total_products)
-            setCountOrderPrice(res.data.total_orderPrice)
+
+            setCountSales(res.data.Sales)
+            setCountProfit(res.data.Profit)
         }).catch((err)=> console.log(err))
     },[])
   return (
@@ -99,7 +102,7 @@ const Dashboard = () => {
                                 <h5> Sales </h5>
                             </div>
                             <div className="Sales mt-3">
-                                <h1>{new Number(countOrderPrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} บาท</h1>
+                                <h1>{new Number(countSales).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} ฿</h1>
                             </div>
                       </Col>
                     </Row>  
@@ -111,7 +114,7 @@ const Dashboard = () => {
                                 <h5> Profit </h5>
                             </div>
                             <div className="Profit mt-3">
-                                <h2>{countOrder} ฿</h2>
+                                <h2>{new Number(countProfit).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} ฿</h2>
                             </div>
                       </Col>
                       <Col xs={12} sm={6} md={6} lg={6} xl={6} className='ColInventories'>

@@ -45,7 +45,7 @@
     }
 }
 .offcanvas{
-    .offcanvas-header{
+    .offcanvas-header.adminHeader{
         background-color: black;
         color: white;
         .offcanvas-title{
@@ -61,9 +61,9 @@
             }
         }
     }
-    .offcanvas-body{
-        color: white;
+    .offcanvas-body.adminBody{
         background-color: black;
+        color: white;
         .customManageAdmin{
             h5{
                 color: white;

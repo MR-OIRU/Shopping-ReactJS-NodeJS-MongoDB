@@ -97,10 +97,6 @@ const CartData = () => {
             }
           })
     }
-
-    const handelCheckOut = () =>{
-            navigate('/cart/checkout')
-    }
 return (
     <>
         <Container>

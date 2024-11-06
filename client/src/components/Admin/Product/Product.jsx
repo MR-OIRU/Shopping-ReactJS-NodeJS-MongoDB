@@ -59,7 +59,7 @@ const Product = () => {
       createColumn('ID', row => row.ProductID),
       createColumn('Brand', row => row.Brand),
       createColumn('Name', row => row.ProductName),
-      createColumn('Quantity', row => row.ProductQuantity),
+      createColumn('Quantity', row => new Number(row.ProductQuantity).toLocaleString()+ ' ชิ้น'),
       createColumn('CostPrice', row => new Number(row.CostPrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})),
       createColumn('SellPrice', row => new Number(row.SellPrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})),
       createColumn('Sold', row => new Number(row.ProductSold).toLocaleString()+ ' ชิ้น'),

@@ -73,13 +73,13 @@ const NavigationBarAdmin = () => {
         </Navbar>
 
         <Offcanvas show={show} onHide={handleClose}>
-          <Offcanvas.Header closeButton closeVariant='white'>
+          <Offcanvas.Header closeButton closeVariant='white' className='adminHeader'>
             <Offcanvas.Title>
               <img src='/image/logoSneaker.png' alt='logo'/>
               <p>Sneaker Shop</p>
             </Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body className='adminBody'>
             <Nav className="flex-column">
               <div className="customNavLink">
                 <div className="customManageAdmin">

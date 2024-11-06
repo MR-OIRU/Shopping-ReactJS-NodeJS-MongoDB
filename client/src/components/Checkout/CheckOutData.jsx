@@ -89,9 +89,29 @@ function CheckOutData() {
                 showConfirmButton: false,
                 timer: 3000
               }).then(() => document.querySelector('.customModal').focus());
+            }else if (err.response.data.message.includes('Insufficient stock')) {
+              const productName = err.response.data.productName;
+              withReactContent(Swal).fire({
+                  icon: "error",
+                  title: "Insufficient stock",
+                  html: `The product with By <br> <span style="font-size: 1.20em; font-weight: bold;">${productName}</span> <br> has insufficient stock.`,
+                  showConfirmButton: true,
+              }).then(() => document.querySelector('.customModal').focus());
+            }else{
+              withReactContent(Swal).fire({
+                icon: "error",
+                title: "Error Encountered",
+                text: "Please contact admin.",
+                showConfirmButton: true,
+            }).then(() => document.querySelector('.customModal').focus());
             }
           } else {
-            console.log('Error:', err.message);
+            withReactContent(Swal).fire({
+              icon: "error",
+              title: "Error Encountered",
+              text: "Please contact admin.",
+              showConfirmButton: true,
+            }).then(() => document.querySelector('.customModal').focus());
           }
         })
   }

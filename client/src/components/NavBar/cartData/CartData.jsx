@@ -70,10 +70,10 @@ function OffCanvasCart({ ...props }) {
             <BsCart onClick={handleShow}/>
       </div>
         <Offcanvas show={show} onHide={handleClose} {...props}>
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header closeButton className="cart-header">
           <Offcanvas.Title><h2 className='ms-5 pt-3'>Cart</h2></Offcanvas.Title>
         </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body className="cart-body">
           <hr/>
             <div className="cartDetail">
               {ProductInCart.length > 0 ? (

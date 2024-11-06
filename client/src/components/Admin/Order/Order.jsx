@@ -118,7 +118,7 @@ const columns = [
       }).then((result) => {
         if (result.isConfirmed) {
             axios.post(`${url}admin/order/update`, {orderID}).then((res) => {
-                if(res.data === 'update successfully'){
+                if(res.data.message === 'update successfully'){
                     Swal.fire({
                         title: "Update!",
                         icon: "success",
@@ -130,7 +130,37 @@ const columns = [
             }).catch((err) => console.log(err))
         }
       });
-}
+  }
+
+  const handleDelete = (orderID) =>{
+    withReactContent(Swal).fire({
+      title: "Are you sure?",
+      html: `Do you want to delete the order with ID <span style="font-size: 1.20em; font-weight: bold;">${orderID}</span>?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#198754",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+          axios.post(`${url}admin/order/delete`, {orderID}).then((res) => {
+              if(res.data.message === 'Delete successfully'){
+                Swal.fire({
+                  title: "Delete!",
+                  icon: "success",
+                  confirmButtonColor: "#198754",
+                }).then(()=>{
+                  window.location.reload();
+              })
+              }
+          }).catch((err) => {
+            if(err.response.data.message === 'Cannot Delete'){
+
+            }
+          })
+      }
+    });
+  }
 
   return (
       <>
