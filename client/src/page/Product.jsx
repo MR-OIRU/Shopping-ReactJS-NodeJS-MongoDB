@@ -1,7 +1,6 @@
 import React from 'react'
 import NavBar from '../components/NavBar/NavBar'
 import BannerProduct from '../components/Banner/BannerProduct'
-import SelectProduct from '../components/Product/SelectProduct'
 import ShowProduct from '../components/Product/ShowProduct'
 import Footer from '../components/Footer/Footer'
 
@@ -11,7 +10,6 @@ function Product() {
     <>
         <NavBar />
         <BannerProduct />
-        <SelectProduct />
         <ShowProduct />
         <Footer />
     </>

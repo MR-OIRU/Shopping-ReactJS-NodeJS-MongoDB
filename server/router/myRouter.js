@@ -151,19 +151,29 @@ router.get('/', async (req, res) => {
     try{
         const queryAllProduct = await Product.aggregate([
             {
-              $match: { ProductQuantity: { $gte: 1 } }
-            },
-            {
               $lookup: {
                 from: "brands",
                 localField: "ProductBrand",
                 foreignField: "BrandID",
                 as: "brand"
               }
+            },
+            {
+                $sort: { ProductSold: -1 }
+            },
+            {
+                $limit: 10
             }
           ]);
         if(queryAllProduct){
-            return  res.status(200).json(queryAllProduct);
+            const productsWithStatus = queryAllProduct.map(product => {
+                const status = product.ProductQuantity > 0 
+                    ? `สินค้าคงเหลือ ${product.ProductQuantity} ชิ้น`
+                    : "สินค้าหมด";
+                return { ...product, status };
+            });
+
+            return res.status(200).json(productsWithStatus);
         }else{
             return res.status(400).json({ message : 'Query All Product Error!!'})
         }
@@ -174,6 +184,7 @@ router.get('/', async (req, res) => {
 
 router.get('/product', async (req,res) => {
     try{
+        const brand = await Brand.find().sort()
         const queryAllProduct = await Product.aggregate([
             {
               $match: { ProductQuantity: { $gte: 1 } }
@@ -189,7 +200,7 @@ router.get('/product', async (req,res) => {
           ]);
         const sessionData = req.session && req.session.user ? req.session.user : null;
         if(queryAllProduct){
-            return res.status(200).json({ products: queryAllProduct, session: sessionData });
+            return res.status(200).json({ products: queryAllProduct, session: sessionData, Brand:brand });
         }else{
             return res.status(400).json({ message : 'Query All Product Error!!'})
         }

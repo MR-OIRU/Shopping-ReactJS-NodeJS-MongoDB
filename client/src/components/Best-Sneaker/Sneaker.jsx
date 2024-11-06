@@ -40,17 +40,26 @@ const Sneaker = () => {
                 }}
             >
             {
-                data.map((item,index) =>(
+                data.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="sneaker mt-5">
-                            <img src={`/image/product/${item.ProductImage}`} alt=""/>
-                            <div className="brand mt-5">{item.brand.length > 0 
-                                                        ? item.brand[0].BrandName.charAt(0).toUpperCase() + item.brand[0].BrandName.slice(1).toLowerCase()
-                                                        : "Unknown Brand"}</div>
+                            <img src={`/image/product/${item.ProductImage}`} alt="" />
+                            <div className="brand mt-5">
+                                {item.brand.length > 0 
+                                    ? item.brand[0].BrandName.charAt(0).toUpperCase() + item.brand[0].BrandName.slice(1).toLowerCase() 
+                                    : "Unknown Brand"}
+                            </div>
                             <div className="name mt-3">{item.ProductName}</div>
-                            <div className="price mt-3">฿ {Number(item.SellPrice).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+                            <div className="price mt-3">
+                                ฿ {Number(item.SellPrice).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </div>
+                            <div className="stock-status mt-3">
+                                {item.ProductQuantity > 0 
+                                    ? `สินค้าคงเหลือ ${item.ProductQuantity} ชิ้น` 
+                                    : "สินค้าหมด"}
+                            </div>
                         </div>
-                </SwiperSlide>
+                    </SwiperSlide>
                 ))
             }
             </Swiper>

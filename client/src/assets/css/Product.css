@@ -1,8 +1,5 @@
 .customSelect{
     margin-top:50px;
-    .searchBox{
-        display: flex;
-    }
 }
 .customShow{
     margin: 50px 0px 50px 0px;
@@ -10,7 +7,16 @@
         margin-bottom: 30px;
             .card{
                 height: 100%;
-                .brand,.price{
+                .custom-card-img{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img{
+                        width: 100%;
+                        height: 260px;
+                    }
+                }
+                .brand,.price,.stock-status{
                     text-align: center;
                 }
                 .card-text{
@@ -28,5 +34,9 @@
         .btn{
             margin: .5rem;
         }
+    }
+    .no-results{
+        text-align: center;
+        font-size: 1.5rem;
     }
 }
